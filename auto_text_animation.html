@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto text animation</title>
+    <style>
+       
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+        body{
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            background-color:royalblue;
+            color: white;
+            font-family: "Merriweather", serif cursive;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I am an Engineer</h1>
+    </div>
+</body>
+
+<script>
+const containerE1 = document.querySelector(".container");
+    const career = ["Engineer", "Artist", "Developer", "Leader", "Actor"];
+    let careerIndex = 0;
+    let characterIndex = 0;
+
+    function updateText() {
+        
+        const currentWord = career[careerIndex];
+        
+        
+        const firstLetter = currentWord.charAt(0).toLowerCase();
+        const vowels = ['a', 'e', 'i', 'o', 'u'];
+        const article = vowels.includes(firstLetter) ? "an" : "a";
+
+        
+        containerE1.innerHTML = `<h1>I am ${article} ${currentWord.slice(0, characterIndex)}</h1>`;
+
+        characterIndex++;
+
+      
+        if (characterIndex > currentWord.length) {
+            characterIndex = 0; 
+            careerIndex++;
+
+            if (careerIndex >= career.length) {
+                careerIndex = 0;
+            }
+        }
+
+        setTimeout(updateText, 300);
+    }
+
+    updateText();
+    </script>
+</html>
